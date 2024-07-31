@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="./user.js"></script>
+    <script src="../script.js"></script>
+    <link href="../style.css">
+    <script>
+
+        function redirectToNextPage(id) {
+            window.location.href = `./editUser.html?id=${id}`;
+        }
+    </script>
+</head>
+
+<body onload="return isLoggedIn()">
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>FullName</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="userTable">
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let users = JSON.parse(localStorage.getItem("users"));
+        let user = JSON.parse(localStorage.getItem("user"));
+        let htmlContent = "";
+        users.forEach(({ fullname, email, id }) => {
+            htmlContent += `
+            <tr>
+                <td>${fullname}</td>
+                <td>${email}</td>
+                <td>
+                    <button class="btn btn-primary" onclick="redirectToNextPage(${id})">Edit</button>
+                    ${user.email === email ? '' : `<button class="btn btn-danger" onclick="deleteUser(${id})">Delete</button>`}
+                </td>
+            </tr>`;
+        });
+        document.getElementById("userTable").innerHTML = htmlContent;
+    </script>
+    <!-- jQuery library -->
+
+</body>
+
+</html>

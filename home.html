@@ -1,0 +1,57 @@
+<!-- CommunicationApplication/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .tab {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .tab:hover {
+            background-color: #555;
+        }
+
+        .tab.active {
+            background-color: #4CAF50;
+        }
+    </style>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+    <div class="tabs">
+        <div class="tab" onclick="loadChatList()" onchange="this.click()">Group Chat</div>
+        <div class="tab active" onclick="loadUserList()" onchange="this.click()">User</div>
+        <div class="tab" onclick="loadDocumentList()" onchange="this.click()">Document</div>
+        <div class="tab" onclick="logout()" onchange="this.click()">Logout</div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelector('.tab.active').onchange();
+            });
+        </script>
+    </div>
+
+    <div id="content"></div>
+
+</body>
+
+</html>
